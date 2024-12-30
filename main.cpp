@@ -1,25 +1,32 @@
+#include "log.hpp"
 #include <SFML/Graphics.hpp>
 
 int main()
 {
 
-    sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
+	static ykes::LogManager &log = ykes::LogManager::get_instance();
 
-    while (window.isOpen())
-    {
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                window.close();
-        }
+	log.start();
+	log.logMessage("%d\n", 69420);
+	log.shut();
 
-        window.clear();
-        window.draw(shape);
-        window.display();
-    }
+	sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
+	sf::CircleShape  shape(100.0);
+	shape.setFillColor(sf::Color::Green);
 
-    return 0;
+	while (window.isOpen())
+	{
+		sf::Event event;
+		while (window.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+				window.close();
+		}
+
+		window.clear();
+		window.draw(shape);
+		window.display();
+	}
+
+	return 0;
 }

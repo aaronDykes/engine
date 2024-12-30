@@ -1,0 +1,27 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "wipe",
+            "command": "make", // Could be any other shell command
+            "type": "shell",
+            "args": [
+                "-C",
+                "${workspaceFolder}",
+                "clean"
+            ],
+        },
+        {
+            "label": "build",
+            "command": "make", // Could be any other shell command
+            "type": "shell",
+            "args": [
+                "-C",
+                "${workspaceFolder}"
+            ],
+            "dependsOn": [
+                "wipe"
+            ]
+        },
+    ]
+}

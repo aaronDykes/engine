@@ -1,5 +1,5 @@
 .PHONY	:= all clean
-CC		:= clang++
+CC		:= g++
 # CFLAGS 	:= -O2
 # CFLAGS 	:= -O3
 # CFLAGS 	:= -Ofast
