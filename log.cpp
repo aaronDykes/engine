@@ -49,7 +49,7 @@ void LM::init_flush(bool do_flush)
 	this->flush = do_flush;
 
 	if (this->flush)
-		fflush(stderr);
+		fflush(this->log_file);
 }
 
 void LM::message(const char *fmt, ...)

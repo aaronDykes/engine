@@ -1,5 +1,6 @@
 #ifndef _GAME_MANAGER_H
 #define _GAME_MANAGER_H
+#include "clock.hpp"
 #include "log.hpp"
 #include "manager.hpp"
 
@@ -24,9 +25,9 @@ namespace ykes
 	    public:
 		static inline GameManager &get_instance(void);
 
-		int  start(LM &log);
+		int  start(LM &log, CLOCK *c);
 		void shut(LM &log);
-		void run(void);
+		void run(LM &log);
 		void end_game(bool over = true);
 		bool get_game_state() const;
 		int  get_frame_time() const;
