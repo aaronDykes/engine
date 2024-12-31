@@ -27,7 +27,7 @@ int main()
 	list2.push(&o2);
 	list2.push(&o3);
 
-	list += list2;
+	list = list + list2;
 
 	list.dump();
 

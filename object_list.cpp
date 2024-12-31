@@ -82,8 +82,23 @@ void ykes::List::operator+=(List &_list)
 	for (size_t i = 0; i < _list.count; i++)
 		this->push(_list.list + i);
 }
+ykes::List ykes::List::operator+(List &_list)
+{
+	List alloced = List();
+
+	for (size_t i = 0; i < this->count; i++)
+		alloced.push(this->list + i);
+
+	for (size_t i = 0; i < _list.count; i++)
+		alloced.push(_list.list + i);
+
+	return alloced;
+}
 void ykes::List::operator=(List const &list)
 {
+
+	free(this->list);
+	this->list  = NULL;
 	this->list  = list.list;
 	this->count = list.count;
 	this->len   = list.len;

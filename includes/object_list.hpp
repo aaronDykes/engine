@@ -31,6 +31,8 @@ extern "C"
 			void remove(size_t index);
 			void remove(Object *obj);
 			void push(Object *obj);
+
+			List operator+(List &);
 			void operator+=(List &);
 			void operator=(List const &);
 
