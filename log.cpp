@@ -5,22 +5,22 @@
 #include <stdlib.h>
 #include <time.h>
 
-ykes::LogManager::LogManager()
+LM::LogManager()
 {
 }
-ykes::LogManager::LogManager(LogManager const &)
-{
-}
-
-void ykes::LogManager::operator=(LogManager const &)
+LM::LogManager(LogManager const &)
 {
 }
 
-ykes::LogManager::~LogManager()
+void LM::operator=(LogManager const &)
 {
 }
 
-int ykes::LogManager::start()
+LM::~LogManager()
+{
+}
+
+int LM::start()
 {
 	this->log_file = NULL;
 	this->log_file = fopen(LOG_FILE.c_str(), "a");
@@ -33,8 +33,9 @@ int ykes::LogManager::start()
 
 	return 0;
 }
-int ykes::LogManager::shut()
+int LM::shut()
 {
+
 	if (!this->log_file)
 		return 0;
 	fclose(this->log_file);
@@ -42,7 +43,7 @@ int ykes::LogManager::shut()
 	return 0;
 }
 
-void ykes::LogManager::init_flush(bool do_flush)
+void LM::init_flush(bool do_flush)
 {
 
 	this->flush = do_flush;
@@ -51,11 +52,11 @@ void ykes::LogManager::init_flush(bool do_flush)
 		fflush(stderr);
 }
 
-void ykes::LogManager::logMessage(const char *fmt, ...)
+void LM::message(const char *fmt, ...)
 {
-	fprintf(stderr, "Message: ");
 	va_list args;
 	va_start(args, fmt);
+	fprintf(this->log_file, "Game log [%d]: ", this->log_count++);
 	vfprintf(this->log_file, fmt, args);
 	va_end(args);
 }

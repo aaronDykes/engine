@@ -1,5 +1,6 @@
 .PHONY	:= all clean
-CC		:= g++
+#CC		:= g++
+CC		:= clang++
 # CFLAGS 	:= -O2
 # CFLAGS 	:= -O3
 # CFLAGS 	:= -Ofast
@@ -11,10 +12,10 @@ YKES	:= ./
 all: ykes
 
 ykes:	$(OBJ)
-	$(CC) -o $@ $^ $(CFLAGS) -lm -lsfml-graphics -lsfml-window -lsfml-system -lsfml-network -lsfml-audio
+	$(CC) -o $@ $^ $(CFLAGS) -lm -lsfml-graphics -lsfml-window -lsfml-system -lsfml-network -lsfml-audio -lrt
 
 %.o:	$(YKES)%.cpp
 	$(CC) -I$(YKES)includes -c $< $(CFLAGS)
 
 clean:
-	rm -rf *.dSYM *.o *.d ykes
+	rm -rf *.dSYM *.o *.d ykes*

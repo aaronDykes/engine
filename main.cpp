@@ -1,18 +1,26 @@
+#include "clock.hpp"
+#include "game_manager.hpp"
 #include "log.hpp"
 #include <SFML/Graphics.hpp>
+#include <time.h>
 
 int main()
 {
 
-	static ykes::LogManager &log = ykes::LogManager::get_instance();
+	CLOCK clock = CLOCK();
 
-	log.start();
-	log.logMessage("%d\n", 69420);
-	log.shut();
+	static GM &game = GM::get_instance();
+	static LM &log  = LM::get_instance();
 
 	sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
 	sf::CircleShape  shape(100.0);
 	shape.setFillColor(sf::Color::Green);
+
+	clock.start();
+
+	game.start(log);
+
+	log.message("Testing 123\n");
 
 	while (window.isOpen())
 	{
@@ -27,6 +35,10 @@ int main()
 		window.draw(shape);
 		window.display();
 	}
+
+	log.message("Ending game...\n");
+
+	game.shut(log);
 
 	return 0;
 }
