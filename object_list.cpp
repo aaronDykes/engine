@@ -22,6 +22,14 @@ void ykes::List::realloc_obj(size_t new_size)
 
 	src = (Object *)realloc(list, sizeof(Object) * new_size);
 
+	if (!src)
+	{
+		fprintf(
+		    stderr, "Unable to reallocate list object: %p\n",
+		    list ? list : (void *)0x0000000000000000
+		);
+		exit(1);
+	}
 	list = src;
 
 	src       = NULL;
