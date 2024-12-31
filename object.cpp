@@ -2,6 +2,10 @@
 ykes::Object::Object()
 {
 }
+ykes::Object::Object(std::string type)
+{
+	this->type = type;
+}
 ykes::Object::~Object()
 {
 }
@@ -30,4 +34,16 @@ void ykes::Object::setType(std::string type)
 void ykes::Object::setPosition(ykes::Vector o_position)
 {
 	this->position = o_position;
+}
+
+bool ykes::Object::operator==(const Object &obj) const
+{
+	return obj.type == this->type;
+}
+
+void ykes::Object::operator=(Object const &obj)
+{
+	this->type     = obj.type;
+	this->position = obj.position;
+	this->id       = obj.id;
 }

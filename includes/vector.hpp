@@ -30,6 +30,7 @@ namespace ykes
 		void normalize(void);
 		void scale(double N);
 
+		void   operator=(Vector const &v);
 		Vector operator+(const Vector &v) const;
 		Vector operator*(const Vector &v) const;
 		Vector operator/(const Vector &v) const;

@@ -12,6 +12,7 @@ extern "C"
 }
 #endif
  */
+
 namespace ykes
 {
 
@@ -24,6 +25,7 @@ namespace ykes
 
 	    public:
 		Object();
+		Object(std::string type);
 		virtual ~Object();
 
 		int         getId(void) const;
@@ -33,6 +35,8 @@ namespace ykes
 		void setId(int o_id);
 		void setType(std::string type);
 		void setPosition(Vector o_position);
+		bool operator==(const Object &obj) const;
+		void operator=(Object const &obj);
 	};
 } // namespace ykes
 

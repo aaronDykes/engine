@@ -87,3 +87,9 @@ bool VECT::operator!=(const Vector &v) const
 {
 	return (this->x != v.x && this->y != v.y);
 }
+
+void VECT::operator=(Vector const &v)
+{
+	this->x = v.x;
+	this->y = v.y;
+}
