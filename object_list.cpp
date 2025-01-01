@@ -26,10 +26,10 @@ void ykes::List::realloc_obj(size_t new_size)
 
 	free(list);
 	list = NULL;
-
 	list = src;
 
 	len = new_size;
+	src = NULL;
 	p   = NULL;
 }
 

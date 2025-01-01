@@ -1,0 +1,5 @@
+#!/bin/zsh
+
+
+cd ../
+touch $1.cpp includes/$1.hpp

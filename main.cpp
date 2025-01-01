@@ -9,7 +9,6 @@ int main()
 {
 
 	static GM &game = GM::get_instance();
-	static LM &log  = LM::get_instance();
 
 	List list = List();
 
@@ -30,7 +29,7 @@ int main()
 
 	list.dump();
 
-	game.run(log);
+	game.run(LM::get_instance());
 
 	return 0;
 }
