@@ -18,6 +18,7 @@ std::string ykes::Manager::get_type(void)
 
 int ykes::Manager::start()
 {
+	return 0;
 }
 void ykes::Manager::end()
 {

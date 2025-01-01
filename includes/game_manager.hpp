@@ -3,6 +3,7 @@
 #include "clock.hpp"
 #include "log.hpp"
 #include "manager.hpp"
+#include "world_manager.hpp"
 
 #define FRAME_TIME_DEF 33
 
@@ -25,9 +26,9 @@ namespace ykes
 	    public:
 		static inline GameManager &get_instance(void);
 
-		int  start(LM &log, CLOCK *c);
-		void shut(LM &log);
-		void run(LM &log);
+		int  start(LM &log, CLOCK *c, WM &wm);
+		void shut(LM &log, WM &wm);
+		void run();
 		void end_game(bool over = true);
 		bool get_game_state() const;
 		int  get_frame_time() const;

@@ -2,6 +2,7 @@
 ykes::Object::Object()
 {
 }
+
 ykes::Object::Object(std::string type)
 {
 	this->type = type;
@@ -21,6 +22,11 @@ std::string ykes::Object::getType(void) const
 ykes::Vector ykes::Object::getPosition(void) const
 {
 	return position;
+}
+
+int ykes::Object::eventHandler(Event *e)
+{
+	return 0;
 }
 
 void ykes::Object::setId(int o_id)

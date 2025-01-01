@@ -1,5 +1,7 @@
 #!/bin/zsh
 
 
-cd ../
-touch $1.cpp includes/$1.hpp
+source ~/.zshrc
+
+
+touch $ENGINE/$1.cpp $ENGINE/includes/$1.hpp

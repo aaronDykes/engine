@@ -15,23 +15,26 @@ GM::~GameManager()
 {
 }
 
-int GM::start(LM &log, CLOCK *c)
+int GM::start(LM &log, CLOCK *c, WM &wm)
 {
-	c->start();
+	wm.start();
 	log.start();
 	return 0;
 }
-void GM::shut(LM &log)
+void GM::shut(LM &log, WM &wm)
 {
 	log.shut();
+	wm.shut();
 	this->end_game(true);
 }
-void GM::run(LM &log)
+void GM::run(void)
 {
 
-	CLOCK c = CLOCK();
+	LM   &log = LM::get_instance();
+	WM   &wm  = WM::get_instance();
+	CLOCK c   = CLOCK();
 
-	this->start(log, &c);
+	this->start(log, &c, wm);
 
 	while (1)
 	{
@@ -65,7 +68,7 @@ void GM::run(LM &log)
 	}
 	log.message("Ending game...\n");
 
-	this->shut(log);
+	this->shut(log, wm);
 }
 void GM::end_game(bool over)
 {
