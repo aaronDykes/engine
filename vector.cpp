@@ -90,6 +90,6 @@ bool VECT::operator!=(const Vector &v) const
 
 void VECT::operator=(Vector const &v)
 {
-	this->x = v.x;
-	this->y = v.y;
+	x = v.x;
+	y = v.y;
 }

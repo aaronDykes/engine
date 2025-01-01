@@ -20,21 +20,17 @@ void ykes::List::realloc_obj(size_t new_size)
 	Object *p   = NULL;
 	Object *src = NULL;
 
-	src = (Object *)realloc(list, sizeof(Object) * new_size);
+	src = (Object *)calloc(new_size, sizeof(Object));
+	src =
+	    (Object *)memmove((void *)src, (void *)list, sizeof(Object) * count);
 
-	if (!src)
-	{
-		fprintf(
-		    stderr, "Unable to reallocate list object: %p\n",
-		    list ? list : (void *)0x0000000000000000
-		);
-		exit(1);
-	}
+	free(list);
+	list = NULL;
+
 	list = src;
 
-	src       = NULL;
-	this->len = new_size;
-	p         = NULL;
+	len = new_size;
+	p   = NULL;
 }
 
 void ykes::List::insert(size_t index, Object *obj)
@@ -67,10 +63,10 @@ void ykes::List::remove(Object *obj)
 }
 void ykes::List::push(Object *obj)
 {
-	if (this->count + 1 > this->len)
-		realloc_obj(this->len * INC);
+	if (count + 1 > len)
+		realloc_obj(len * INC);
 
-	*(this->list + this->count++) = *obj;
+	*(list + count++) = *obj;
 }
 void ykes::List::clear(void)
 {

@@ -43,7 +43,7 @@ bool ykes::Object::operator==(const Object &obj) const
 
 void ykes::Object::operator=(Object const &obj)
 {
-	this->type     = obj.type;
-	this->position = obj.position;
-	this->id       = obj.id;
+	type     = obj.type;
+	position = obj.position;
+	id       = obj.id;
 }

@@ -12,6 +12,7 @@ namespace ykes
 	    public:
 		Event();
 		~Event();
+		virtual int eventHandler(Event *e);
 	};
 
 } // namespace ykes
