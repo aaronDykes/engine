@@ -31,6 +31,6 @@ namespace ykes
 		void operator=(List const &);
 
 		void clear(void);
-		void dump(void);
+		void dump(void) const;
 	};
 } // namespace ykes

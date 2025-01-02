@@ -18,6 +18,7 @@ int ykes::WorldManager::start()
 {
 	return 0;
 }
+
 void ykes::WorldManager::shut()
 {
 }
@@ -46,13 +47,17 @@ ykes::List ykes::WorldManager::getObjectsOfType(std::string type) const
 }
 void ykes::WorldManager::update(void)
 {
-	deletions.clear();
+
+	for (size_t i = 0; i < deletions.count; i++)
+	{
+		delete *(deletions.list + i);
+		*(deletions.list + i) = NULL;
+	}
 }
 
 int ykes::WorldManager::markForDelete(Object *obj)
 {
 
-	// return updates.remove(obj);
 	for (size_t i = 0; i < deletions.count; i++)
 		if ((*(deletions.list + i))->getType() == obj->getType())
 			return 0;

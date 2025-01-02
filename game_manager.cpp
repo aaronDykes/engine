@@ -2,8 +2,8 @@
 #include "log_manager.hpp"
 #include <SFML/Graphics.hpp>
 
-ykes::WorldManager &wm  = ykes::WorldManager::get_instance();
-ykes::LogManager   &log = ykes::LogManager::get_instance();
+static ykes::WorldManager &wm  = ykes::WorldManager::get_instance();
+static ykes::LogManager   &log = ykes::LogManager::get_instance();
 
 ykes::GameManager::GameManager()
 {
@@ -39,6 +39,28 @@ void ykes::GameManager::run(void)
 
 	this->start(log, &c, wm);
 
+	Object *o  = new Object("Bullet");
+	Object *o1 = new Object("Bullet");
+	Object *o2 = new Object("Bullet");
+	Object *o3 = new Object("Bullet");
+	Object *o4 = new Object("Bullet");
+	Object *o5 = new Object("Bullet");
+	Object *o6 = new Object("Bullet");
+	Object *o7 = new Object("Bullet");
+	Object *o8 = new Object("Bullet");
+
+	wm.markForDelete(o);
+	wm.markForDelete(o1);
+	wm.markForDelete(o2);
+	wm.markForDelete(o3);
+	wm.markForDelete(o4);
+	wm.markForDelete(o5);
+	wm.markForDelete(o6);
+	wm.markForDelete(o7);
+	wm.markForDelete(o8);
+
+	wm.update();
+
 	while (1)
 	{
 
@@ -70,7 +92,6 @@ void ykes::GameManager::run(void)
 		log.message("Elapsed time (ms): %ld\n", c.elapsed_ms());
 	}
 	log.message("Ending game...\n");
-
 	this->shut(log, wm);
 }
 void ykes::GameManager::end_game(bool over)

@@ -57,7 +57,6 @@ int ykes::List::remove(size_t index)
 		return -1;
 	int i = --this->count;
 
-	delete *(this->list + index);
 	*(this->list + index) = NULL;
 	*(this->list + index) = *(this->list + i);
 	*(this->list + i)     = NULL;
@@ -66,11 +65,9 @@ int ykes::List::remove(size_t index)
 int ykes::List::remove(Object *obj)
 {
 	for (size_t i = 0; i < this->count; i++)
-		if (*(this->list + i) == obj)
+		if (*(this->list + i) && *(this->list + i) == obj)
 		{
-			int last = --this->count;
-			delete *(this->list + i);
-
+			int last             = --this->count;
 			*(this->list + i)    = NULL;
 			*(this->list + i)    = *(this->list + last);
 			*(this->list + last) = NULL;
@@ -86,17 +83,6 @@ void ykes::List::push(Object *obj)
 		realloc_obj(len * INC);
 
 	*(list + count++) = obj;
-}
-void ykes::List::clear(void)
-{
-	for (size_t i = 0; i < count; i++)
-		if (*(list + i) != NULL)
-		{
-			delete *(list + i);
-			*(list + i) = NULL;
-		}
-
-	this->count = 0;
 }
 
 void ykes::List::operator+=(List &_list)
@@ -119,7 +105,11 @@ ykes::List ykes::List::operator+(List &_list)
 void ykes::List::operator=(List const &list)
 {
 
-	this->clear();
+	for (size_t i = 0; i < count; i++)
+	{
+		delete *(this->list + i);
+		*(this->list + i) = NULL;
+	}
 	free(this->list);
 	this->list  = NULL;
 	this->list  = list.list;
@@ -127,8 +117,8 @@ void ykes::List::operator=(List const &list)
 	this->len   = list.len;
 }
 
-void ykes::List::dump(void)
+void ykes::List::dump(void) const
 {
-	for (size_t i = 0; i < this->count; i++)
-		std::cout << (*(this->list + i))->getType() << std::endl;
+	for (size_t i = 0; i < count; i++)
+		std::cout << (*(list + i))->getType() << std::endl;
 }
