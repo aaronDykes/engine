@@ -1,6 +1,3 @@
-#ifndef _COMMON_H
-#define _COMMON_H
+#pragma once
 
 #define VERBOSE_DBG_LOG
-
-#endif

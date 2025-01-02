@@ -1,5 +1,4 @@
-#ifndef _EVENT_MOUSE_H
-#define _EVENT_MOUSE_H
+#pragma once
 
 #include "event.hpp"
 
@@ -9,4 +8,3 @@ namespace ykes
 	{
 	};
 } // namespace ykes
-#endif

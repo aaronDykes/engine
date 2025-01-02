@@ -1,10 +1,7 @@
-#ifndef _WORLD_MANAGER_H
-#define _WORLD_MANAGER_H
+#pragma once
 
 #include "manager.hpp"
 #include "object_list.hpp"
-
-#define WM ykes::WorldManager
 
 namespace ykes
 {
@@ -43,4 +40,3 @@ inline ykes::WorldManager &ykes::WorldManager::get_instance(void)
 	static WorldManager w;
 	return w;
 }
-#endif

@@ -1,38 +1,41 @@
 #include "game_manager.hpp"
-#include "log.hpp"
+#include "log_manager.hpp"
 #include <SFML/Graphics.hpp>
 
-GM::GameManager()
+ykes::WorldManager &wm  = ykes::WorldManager::get_instance();
+ykes::LogManager   &log = ykes::LogManager::get_instance();
+
+ykes::GameManager::GameManager()
 {
 }
-GM::GameManager(GameManager const &)
+ykes::GameManager::GameManager(GameManager const &)
 {
 }
-void GM::operator=(GameManager const &)
+void ykes::GameManager::operator=(GameManager const &)
 {
 }
-GM::~GameManager()
+ykes::GameManager::~GameManager()
 {
 }
 
-int GM::start(LM &log, CLOCK *c, WM &wm)
+int ykes::GameManager::start(
+    ykes::LogManager &log, ykes::Clock *c, ykes::WorldManager &wm
+)
 {
 	wm.start();
 	log.start();
 	return 0;
 }
-void GM::shut(LM &log, WM &wm)
+void ykes::GameManager::shut(ykes::LogManager &log, ykes::WorldManager &wm)
 {
 	log.shut();
 	wm.shut();
 	this->end_game(true);
 }
-void GM::run(void)
+void ykes::GameManager::run(void)
 {
 
-	LM   &log = LM::get_instance();
-	WM   &wm  = WM::get_instance();
-	CLOCK c   = CLOCK();
+	ykes::Clock c = ykes::Clock();
 
 	this->start(log, &c, wm);
 
@@ -70,15 +73,30 @@ void GM::run(void)
 
 	this->shut(log, wm);
 }
-void GM::end_game(bool over)
+void ykes::GameManager::end_game(bool over)
 {
 	this->game = over;
 }
-bool GM::get_game_state() const
+bool ykes::GameManager::get_game_state() const
 {
 	return this->game;
 }
-int GM::get_frame_time() const
+int ykes::GameManager::get_frame_time() const
 {
 	return this->frame_time;
+}
+
+ykes::Object::Object()
+{
+	wm.insertObject(this);
+}
+
+ykes::Object::Object(std::string type)
+{
+	this->type = type;
+	wm.insertObject(this);
+}
+ykes::Object::~Object()
+{
+	wm.removeObject(this);
 }

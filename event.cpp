@@ -15,8 +15,9 @@ int ykes::Event::eventHandler(Event *e)
 
 std::string ykes::Event::getType(void) const
 {
-	return "fuck shit";
+	return event_type;
 }
 void ykes::Event::setType(std::string type)
 {
+	event_type = type;
 }

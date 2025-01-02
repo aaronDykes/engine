@@ -79,6 +79,7 @@ int ykes::List::remove(Object *obj)
 
 	return -1;
 }
+
 void ykes::List::push(Object *obj)
 {
 	if (count + 1 > len)

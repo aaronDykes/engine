@@ -1,5 +1,4 @@
-#ifndef _EVENT_KEYBOARD_H
-#define _EVENT_KEYBOARD_H
+#pragma once
 #include "event.hpp"
 
 namespace ykes
@@ -8,4 +7,3 @@ namespace ykes
 	{
 	};
 } // namespace ykes
-#endif

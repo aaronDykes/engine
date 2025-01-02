@@ -1,5 +1,4 @@
-#ifndef _LIST_H
-#define _LIST_H
+#pragma once
 
 #include "object.hpp"
 
@@ -35,5 +34,3 @@ namespace ykes
 		void dump(void);
 	};
 } // namespace ykes
-
-#endif

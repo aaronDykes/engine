@@ -1,5 +1,5 @@
-#ifndef MANAGER_H
-#define MANAGER_H
+#pragma once
+
 #include "common.h"
 #include <string>
 
@@ -26,5 +26,3 @@ namespace ykes
 	};
 
 } // namespace ykes
-
-#endif

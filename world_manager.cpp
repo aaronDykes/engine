@@ -46,10 +46,7 @@ ykes::List ykes::WorldManager::getObjectsOfType(std::string type) const
 }
 void ykes::WorldManager::update(void)
 {
-
-	for (size_t i = 0; i < deletions.count; i++)
-		delete *(deletions.list + i);
-	deletions.count = 0;
+	deletions.clear();
 }
 
 int ykes::WorldManager::markForDelete(Object *obj)

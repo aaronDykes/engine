@@ -1,9 +1,6 @@
-#ifndef _VECTOR_H
-#define _VECTOR_H
+#pragma once
 #include "utillity.hpp"
 #include <vector>
-
-#define VECT ykes::Vector
 
 namespace ykes
 {
@@ -38,5 +35,3 @@ namespace ykes
 		bool   operator!=(const Vector &v) const;
 	};
 } // namespace ykes
-
-#endif

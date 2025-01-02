@@ -1,10 +1,7 @@
-#ifndef LOG_MANAGER_H
-#define LOG_MANAGER_H
+#pragma once
 
 #include "manager.hpp"
 #include <iostream>
-
-#define LM ykes::LogManager
 
 namespace ykes
 {
@@ -31,10 +28,8 @@ namespace ykes
 	};
 } // namespace ykes
 
-inline LM &LM::get_instance(void)
+inline ykes::LogManager &ykes::LogManager::get_instance(void)
 {
 	static LogManager l;
 	return l;
 }
-
-#endif

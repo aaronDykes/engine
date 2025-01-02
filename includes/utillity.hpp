@@ -1,5 +1,4 @@
-#ifndef UTILITY_H
-#define UTILITY_H
+#pragma once
 
 typedef long long int Long;
 namespace ykes
@@ -11,5 +10,3 @@ namespace ykes
 	};
 
 } // namespace ykes
-
-#endif

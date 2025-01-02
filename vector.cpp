@@ -1,42 +1,42 @@
 #include "vector.hpp"
 #include <math.h>
 
-VECT::Vector()
+ykes::Vector::Vector()
 {
 }
 
-VECT::~Vector()
+ykes::Vector::~Vector()
 {
 }
 
-double VECT::getX(void)
+double ykes::Vector::getX(void)
 {
 	return this->x;
 }
-double VECT::getY(void)
+double ykes::Vector::getY(void)
 {
 	return this->y;
 }
-double VECT::getMagnitude(void)
+double ykes::Vector::getMagnitude(void)
 {
 	return sqrt((this->x * this->x) + (this->y * this->y));
 }
 
-void VECT::setX(double X)
+void ykes::Vector::setX(double X)
 {
 	this->x = X;
 }
-void VECT::setY(double Y)
+void ykes::Vector::setY(double Y)
 {
 	this->y = Y;
 }
-void VECT::setXY(double X, double Y)
+void ykes::Vector::setXY(double X, double Y)
 {
 	this->x = X;
 	this->y = Y;
 }
 
-void VECT::normalize(void)
+void ykes::Vector::normalize(void)
 {
 	double length = this->getMagnitude();
 
@@ -46,13 +46,13 @@ void VECT::normalize(void)
 		this->y /= length;
 	}
 }
-void VECT::scale(double N)
+void ykes::Vector::scale(double N)
 {
 	this->x *= N;
 	this->y *= N;
 }
 
-VECT VECT::operator+(const Vector &v) const
+ykes::Vector ykes::Vector::operator+(const Vector &v) const
 {
 	Vector a;
 
@@ -61,7 +61,7 @@ VECT VECT::operator+(const Vector &v) const
 
 	return a;
 }
-VECT VECT::operator*(const Vector &v) const
+ykes::Vector ykes::Vector::operator*(const Vector &v) const
 {
 	Vector a;
 
@@ -70,7 +70,7 @@ VECT VECT::operator*(const Vector &v) const
 
 	return a;
 }
-VECT VECT::operator/(const Vector &v) const
+ykes::Vector ykes::Vector::operator/(const Vector &v) const
 {
 	Vector a;
 
@@ -79,16 +79,16 @@ VECT VECT::operator/(const Vector &v) const
 
 	return a;
 }
-bool VECT::operator==(const Vector &v) const
+bool ykes::Vector::operator==(const Vector &v) const
 {
 	return (this->x == v.x && this->y == v.y);
 }
-bool VECT::operator!=(const Vector &v) const
+bool ykes::Vector::operator!=(const Vector &v) const
 {
 	return (this->x != v.x && this->y != v.y);
 }
 
-void VECT::operator=(Vector const &v)
+void ykes::Vector::operator=(Vector const &v)
 {
 	x = v.x;
 	y = v.y;

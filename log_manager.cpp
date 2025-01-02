@@ -1,26 +1,26 @@
 #include "common.h"
-#include "log.hpp"
+#include "log_manager.hpp"
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 
-LM::LogManager()
+ykes::LogManager::LogManager()
 {
 }
-LM::LogManager(LogManager const &)
-{
-}
-
-void LM::operator=(LogManager const &)
+ykes::LogManager::LogManager(LogManager const &)
 {
 }
 
-LM::~LogManager()
+void ykes::LogManager::operator=(LogManager const &)
 {
 }
 
-int LM::start()
+ykes::LogManager::~LogManager()
+{
+}
+
+int ykes::LogManager::start()
 {
 	this->log_file = NULL;
 	this->log_file = fopen(LOG_FILE.c_str(), "a");
@@ -33,7 +33,7 @@ int LM::start()
 
 	return 0;
 }
-int LM::shut()
+int ykes::LogManager::shut()
 {
 
 	if (!this->log_file)
@@ -43,7 +43,7 @@ int LM::shut()
 	return 0;
 }
 
-void LM::init_flush(bool do_flush)
+void ykes::LogManager::init_flush(bool do_flush)
 {
 
 	this->flush = do_flush;
@@ -52,7 +52,7 @@ void LM::init_flush(bool do_flush)
 		fflush(this->log_file);
 }
 
-void LM::message(const char *fmt, ...)
+void ykes::LogManager::message(const char *fmt, ...)
 {
 	va_list args;
 	va_start(args, fmt);

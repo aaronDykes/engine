@@ -1,5 +1,4 @@
-#ifndef _OBJECT_H
-#define _OBJECT_H
+#pragma once
 
 #include "event.hpp"
 #include "vector.hpp"
@@ -41,5 +40,3 @@ namespace ykes
 		void        operator=(Object const &obj);
 	};
 } // namespace ykes
-
-#endif

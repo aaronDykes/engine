@@ -1,5 +1,5 @@
-#ifndef _SOUND_H
-#define _SOUND_H
+#pragma once
+
 #include "utillity.hpp"
 
 namespace ykes
@@ -8,5 +8,3 @@ namespace ykes
 	{
 	};
 } // namespace ykes
-
-#endif

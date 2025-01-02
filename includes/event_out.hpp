@@ -1,6 +1,4 @@
-#ifndef _EVENT_OUT_H
-#define _EVENT_OUT_H
-
+#pragma once
 #include "event.hpp"
 
 namespace ykes
@@ -9,4 +7,3 @@ namespace ykes
 	{
 	};
 } // namespace ykes
-#endif

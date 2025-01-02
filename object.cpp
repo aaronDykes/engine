@@ -1,15 +1,4 @@
 #include "object.hpp"
-ykes::Object::Object()
-{
-}
-
-ykes::Object::Object(std::string type)
-{
-	this->type = type;
-}
-ykes::Object::~Object()
-{
-}
 
 int ykes::Object::getId(void) const
 {

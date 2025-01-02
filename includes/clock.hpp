@@ -1,11 +1,9 @@
-#ifndef _CLOCK_H
-#define _CLOCK_H
+
+#pragma once
 #include "utillity.hpp"
 #include <time.h>
 
 #define TARGET_TIME 0.00000033
-
-#define CLOCK ykes::Clock
 
 namespace ykes
 {
@@ -27,5 +25,3 @@ namespace ykes
 		Long elapsed_sec(void);
 	};
 } // namespace ykes
-
-#endif

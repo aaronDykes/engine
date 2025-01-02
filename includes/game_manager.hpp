@@ -1,13 +1,11 @@
-#ifndef _GAME_MANAGER_H
-#define _GAME_MANAGER_H
+#pragma once
+
 #include "clock.hpp"
-#include "log.hpp"
+#include "log_manager.hpp"
 #include "manager.hpp"
 #include "world_manager.hpp"
 
 #define FRAME_TIME_DEF 33
-
-#define GM ykes::GameManager
 
 namespace ykes
 {
@@ -19,15 +17,16 @@ namespace ykes
 		GameManager(GameManager const &);
 		void operator=(GameManager const &);
 		~GameManager();
-		bool      game;
-		int       frame_time;
-		static LM logger;
+		bool game;
+		int  frame_time;
 
 	    public:
 		static inline GameManager &get_instance(void);
 
-		int  start(LM &log, CLOCK *c, WM &wm);
-		void shut(LM &log, WM &wm);
+		int start(
+		    ykes::LogManager &log, ykes::Clock *c, ykes::WorldManager &wm
+		);
+		void shut(ykes::LogManager &log, ykes::WorldManager &wm);
 		void run();
 		void end_game(bool over = true);
 		bool get_game_state() const;
@@ -35,9 +34,8 @@ namespace ykes
 	};
 } // namespace ykes
 
-inline GM &GM::get_instance(void)
+inline ykes::GameManager &ykes::GameManager::get_instance(void)
 {
 	static GameManager g;
 	return g;
 }
-#endif

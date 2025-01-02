@@ -1,5 +1,5 @@
-#ifndef _MUSIC_H
-#define _MUSIC_H
+#pragma once
+
 #include "utillity.hpp"
 
 namespace ykes
@@ -8,5 +8,3 @@ namespace ykes
 	{
 	};
 } // namespace ykes
-
-#endif

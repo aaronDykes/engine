@@ -1,5 +1,4 @@
-#ifndef _FRAME_H
-#define _FRAME_H
+#pragma once
 #include "utillity.hpp"
 
 namespace ykes
@@ -8,5 +7,3 @@ namespace ykes
 	{
 	};
 } // namespace ykes
-
-#endif

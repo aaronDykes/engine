@@ -1,6 +1,4 @@
-#ifndef _EVENT_STEP_H
-#define _EVENT_STEP_H
-
+#pragma once
 #include "event.hpp"
 
 namespace ykes
@@ -23,4 +21,3 @@ namespace ykes
 		int getCount(void) const;
 	};
 } // namespace ykes
-#endif

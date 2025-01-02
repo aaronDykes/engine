@@ -1,5 +1,5 @@
-#ifndef SINGLE_H
-#define SINGLE_H
+
+#pragma once
 
 namespace ykes
 {
@@ -20,5 +20,3 @@ namespace ykes
 		}
 	};
 } // namespace ykes
-
-#endif
