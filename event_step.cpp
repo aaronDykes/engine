@@ -10,9 +10,11 @@ ykes::EventStep::~EventStep()
 
 void ykes::EventStep::setCount(int Int)
 {
+	step_count = Int;
 }
 void ykes::EventStep::inc(void)
 {
+	++step_count;
 }
 
 int ykes::EventStep::getCount(void) const

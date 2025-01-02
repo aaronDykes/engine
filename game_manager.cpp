@@ -1,3 +1,4 @@
+#include "event_step.hpp"
 #include "game_manager.hpp"
 #include "log_manager.hpp"
 #include <SFML/Graphics.hpp>
@@ -28,8 +29,8 @@ int ykes::GameManager::start(
 }
 void ykes::GameManager::shut(ykes::LogManager &log, ykes::WorldManager &wm)
 {
-	log.shut();
 	wm.shut();
+	log.shut();
 	this->end_game(true);
 }
 void ykes::GameManager::run(void)
@@ -120,4 +121,22 @@ ykes::Object::Object(std::string type)
 ykes::Object::~Object()
 {
 	wm.removeObject(this);
+}
+
+void ykes::GameManager::broadcastEvents(void)
+{
+	EventStep e;
+	onEvent(&e);
+}
+
+int ykes::Manager::onEvent(Event *event) const
+{
+	size_t i;
+
+	List list = wm.getObjectList();
+
+	for (i = 0; i < list.count; i++)
+		(*(list.list + i))->eventHandler(event);
+
+	return i;
 }

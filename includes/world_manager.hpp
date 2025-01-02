@@ -23,7 +23,6 @@ namespace ykes
 		int  start();
 		void shut();
 
-		void purge(void);
 		void insertObject(Object *obj);
 		int removeObject(Object *obj); // return 0 on success, -1 on failure
 

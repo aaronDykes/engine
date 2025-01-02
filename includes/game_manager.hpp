@@ -26,6 +26,8 @@ namespace ykes
 		int start(
 		    ykes::LogManager &log, ykes::Clock *c, ykes::WorldManager &wm
 		);
+
+		void broadcastEvents(void);
 		void shut(ykes::LogManager &log, ykes::WorldManager &wm);
 		void run();
 		void end_game(bool over = true);
