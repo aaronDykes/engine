@@ -23,6 +23,8 @@ namespace ykes
 		int  start();
 		void shut();
 
+		virtual int draw(void);
+
 		void insertObject(Object *obj);
 		int removeObject(Object *obj); // return 0 on success, -1 on failure
 
@@ -38,5 +40,6 @@ namespace ykes
 inline ykes::WorldManager &ykes::WorldManager::get_instance(void)
 {
 	static WorldManager w;
+	w.set_type("ykes::WorldManager");
 	return w;
 }

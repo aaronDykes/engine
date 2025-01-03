@@ -38,6 +38,12 @@
         "ir_common.h": "c",
         "ir_util.h": "c",
         "ir.h": "c",
-        "vector.h": "c"
+        "vector.h": "c",
+        "*.tcc": "cpp",
+        "deque": "cpp",
+        "list": "cpp",
+        "unordered_map": "cpp",
+        "vector": "cpp",
+        "system_error": "cpp"
     }
 }

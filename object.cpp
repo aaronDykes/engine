@@ -42,3 +42,8 @@ void ykes::Object::operator=(Object const &obj)
 	position = obj.position;
 	id       = obj.id;
 }
+
+int ykes::Object::draw()
+{
+	return 0;
+}

@@ -65,3 +65,12 @@ int ykes::WorldManager::markForDelete(Object *obj)
 	deletions.push(obj);
 	return 1;
 }
+
+int ykes::WorldManager::draw(void)
+{
+
+	for (size_t i = 0; i < updates.len; i++)
+		(*(updates.list + i))->draw();
+
+	return 0;
+}

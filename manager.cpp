@@ -11,7 +11,11 @@ ykes::Manager::Manager()
 ykes::Manager::~Manager()
 {
 }
-std::string ykes::Manager::get_type(void)
+
+void ykes::Manager::operator=(Manager const &m)
+{
+}
+std::string ykes::Manager::get_type(void) const
 {
 	return this->m_type;
 }

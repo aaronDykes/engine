@@ -31,5 +31,6 @@ namespace ykes
 inline ykes::LogManager &ykes::LogManager::get_instance(void)
 {
 	static LogManager l;
+	l.set_type("ykes::LogManager");
 	return l;
 }

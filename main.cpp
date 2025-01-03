@@ -1,8 +1,7 @@
+#include "display_manager.cpp"
 #include "game_manager.hpp"
 #include "object_list.hpp"
 #include <time.h>
-
-using namespace ykes;
 
 int main()
 {

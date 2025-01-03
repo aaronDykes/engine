@@ -11,16 +11,17 @@ namespace ykes
 	{
 
 	    private:
-		std::string m_type;
-		bool        active;
+		std::string  m_type;
+		virtual void operator=(Manager const &m);
+		bool         active;
 
 	    protected:
+		Manager();
+		virtual ~Manager();
 		void set_type(std::string m_type);
 
 	    public:
-		Manager();
-		virtual ~Manager();
-		std::string get_type(void);
+		std::string get_type(void) const;
 
 		int          onEvent(Event *event) const;
 		virtual int  start();
