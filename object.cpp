@@ -47,3 +47,12 @@ int ykes::Object::draw()
 {
 	return 0;
 }
+
+int ykes::Object::getAltitude(void) const
+{
+	return altitude;
+}
+void ykes::Object::setAltitude(int alt)
+{
+	altitude = alt;
+}

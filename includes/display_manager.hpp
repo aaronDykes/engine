@@ -37,6 +37,7 @@ namespace ykes
 
 		sf::Font          font;
 		sf::RenderWindow *window;
+		sf::Color         background;
 
 		int horizontal_pixels;
 		int vertical_pixels;
@@ -46,9 +47,10 @@ namespace ykes
 	    public:
 		static inline DisplayManager &get_instance(void);
 
-		int drawCh(Vector world_pos, char ch, color_t color);
+		int drawCh(Vector world_pos, char ch, sf::Color color);
 		int drawString(
-		    Vector pos, std::string str, justification_t just, color_t color
+		    Vector pos, std::string str, justification_t just,
+		    sf::Color color
 		);
 
 		sf::RenderWindow *getWindow(void) const;
@@ -63,7 +65,8 @@ namespace ykes
 		void setVertPixels(int pix);
 		void setVertChars(int pix);
 
-		int swap_buffers(void);
+		int  swap_buffers(void);
+		void setBackground(sf::Color color);
 
 		double char_height(void);
 		double char_width(void);
@@ -80,7 +83,6 @@ namespace ykes
 inline ykes::DisplayManager &ykes::DisplayManager::get_instance(void)
 {
 	static DisplayManager d;
-	d.set_type("ykes::DisplayManager");
 	return d;
 }
 

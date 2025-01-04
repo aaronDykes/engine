@@ -69,8 +69,12 @@ int ykes::WorldManager::markForDelete(Object *obj)
 int ykes::WorldManager::draw(void)
 {
 
-	for (size_t i = 0; i < updates.len; i++)
-		(*(updates.list + i))->draw();
+	for (int alt = 0; alt <= MAX_ALTITUDE; alt++)
+	{
+		for (size_t i = 0; i < updates.count; i++)
+			if ((*(updates.list + i))->getAltitude() == alt)
+				(*(updates.list + i))->draw();
+	}
 
 	return 0;
 }

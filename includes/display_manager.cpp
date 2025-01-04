@@ -1,3 +1,4 @@
+#include "common.h"
 #include "display_manager.hpp"
 
 ykes::DisplayManager::DisplayManager()
@@ -23,6 +24,14 @@ int ykes::DisplayManager::start()
 	if (window)
 		return 0;
 
+	set_type("ykes::DisplayManager");
+
+	horizontal_pixels = WINDOW_HORIZONTAL_PIXELS;
+	vertical_pixels   = WINDOW_VERTICAL_PIXELS;
+
+	horizontal_chars = WINDOW_HORIZONTAL_CHARS;
+	vertical_chars   = WINDOW_VERTICAL_CHARS;
+
 	font.loadFromFile(FONT_PATH);
 	font.setSmooth(true);
 
@@ -44,7 +53,7 @@ void ykes::DisplayManager::shut()
 	window = NULL;
 }
 
-int ykes::DisplayManager::drawCh(Vector world_pos, char ch, color_t color)
+int ykes::DisplayManager::drawCh(Vector world_pos, char ch, sf::Color color)
 {
 	if (!window)
 		return 1;
@@ -63,42 +72,19 @@ int ykes::DisplayManager::drawCh(Vector world_pos, char ch, color_t color)
 
 	static sf::Text text("", font);
 	text.setString(ch);
+
 	text.setStyle(sf::Text::Bold);
 
+#ifdef DISPLAY_MANGER_DBG
+	text.setCharacterSize(72);
+#else
 	if (char_width() < char_height())
 		text.setCharacterSize(char_width() * 2);
 	else
 		text.setCharacterSize(char_height() * 2);
+#endif
 
-	switch (color)
-	{
-	case BLACK:
-		text.setFillColor(sf::Color::Black);
-		break;
-	case RED:
-		text.setFillColor(sf::Color::Red);
-		break;
-	case GREEN:
-		text.setFillColor(sf::Color::Green);
-		break;
-	case YELLOW:
-		text.setFillColor(sf::Color::Yellow);
-		break;
-	case BLUE:
-		text.setFillColor(sf::Color::Blue);
-		break;
-	case MAGENTA:
-		text.setFillColor(sf::Color::Magenta);
-		break;
-	case CYAN:
-		text.setFillColor(sf::Color::Cyan);
-		break;
-	case WHITE:
-		text.setFillColor(sf::Color::White);
-		break;
-	default:
-		return 1;
-	}
+	text.setFillColor(color);
 
 	text.setPosition(pix_pos.getX(), pix_pos.getY());
 
@@ -176,7 +162,7 @@ ykes::Vector ykes::DisplayManager::pixelToSpaces(Vector pixels)
 }
 
 int ykes::DisplayManager::drawString(
-    Vector pos, std::string str, justification_t just, color_t color
+    Vector pos, std::string str, justification_t just, sf::Color color
 )
 {
 
@@ -193,9 +179,18 @@ int ykes::DisplayManager::drawString(
 		break;
 	}
 	char *tmp   = (char *)str.c_str();
-	int   count = 0;
+	int   count = 1;
 
 	for (char *p = tmp; *p; p++, count++)
-		drawCh(Vector(start.getX() + count, start.getY()), *p, color);
+	{
+
+		drawCh(Vector((start.getX() + count) * 5, start.getY()), *p, color);
+	}
+
 	return 0;
+}
+
+void ykes::DisplayManager::setBackground(sf::Color color)
+{
+	background = color;
 }

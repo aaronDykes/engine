@@ -3,6 +3,9 @@
 #include "manager.hpp"
 #include "object_list.hpp"
 
+#define MAX_ALTITUDE      4
+#define HALF_MAX_ALTITUDE 2
+
 namespace ykes
 {
 

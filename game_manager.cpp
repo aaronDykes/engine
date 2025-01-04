@@ -5,7 +5,7 @@
 
 static ykes::WorldManager   &wm  = ykes::WorldManager::get_instance();
 static ykes::LogManager     &log = ykes::LogManager::get_instance();
-static ykes::DisplayManager &dm  = ykes::DisplayManager::get_instance();
+static ykes::DisplayManager &DM  = ykes::DisplayManager::get_instance();
 
 ykes::GameManager::GameManager()
 {
@@ -24,13 +24,13 @@ int ykes::GameManager::start(void)
 {
 	wm.start();
 	log.start();
-	dm.start();
+	DM.start();
 	return 0;
 }
 void ykes::GameManager::shut(void)
 {
 	wm.shut();
-	dm.shut();
+	DM.shut();
 	log.shut();
 	this->end_game(true);
 }
@@ -52,7 +52,24 @@ int ykes::GameManager::run()
 		wm.update();
 		wm.draw();
 
-		dm.swap_buffers();
+		sf::Event event;
+		while (DM.getWindow()->isOpen())
+		{
+			while (DM.getWindow()->pollEvent(event))
+			{
+				if (event.type == sf::Event::Closed)
+				{
+					DM.shut();
+					return 0;
+				};
+			}
+
+			DM.drawString(
+			    Vector(10, 10), "This is a string", JUSTIFIED_CENTER,
+			    sf::Color::Red
+			);
+			DM.swap_buffers();
+		}
 
 		log.message("Elapsed time (ms): %ld\n", c.elapsed_ms());
 	}
@@ -80,7 +97,8 @@ ykes::Object::Object()
 
 ykes::Object::Object(std::string type)
 {
-	this->type = type;
+	this->type     = type;
+	this->altitude = HALF_MAX_ALTITUDE;
 	wm.insertObject(this);
 }
 ykes::Object::~Object()
