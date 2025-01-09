@@ -33,14 +33,13 @@ int ykes::LogManager::start()
 
 	return 0;
 }
-int ykes::LogManager::shut()
+void ykes::LogManager::shut()
 {
 
 	if (!this->log_file)
-		return 0;
+		return;
 	fclose(this->log_file);
 	this->log_file = NULL;
-	return 0;
 }
 
 void ykes::LogManager::init_flush(bool do_flush)

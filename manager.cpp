@@ -24,6 +24,6 @@ int ykes::Manager::start()
 {
 	return 0;
 }
-void ykes::Manager::end()
+void ykes::Manager::shut()
 {
 }

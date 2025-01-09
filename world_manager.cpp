@@ -70,11 +70,9 @@ int ykes::WorldManager::draw(void)
 {
 
 	for (int alt = 0; alt <= MAX_ALTITUDE; alt++)
-	{
 		for (size_t i = 0; i < updates.count; i++)
 			if ((*(updates.list + i))->getAltitude() == alt)
 				(*(updates.list + i))->draw();
-	}
 
 	return 0;
 }

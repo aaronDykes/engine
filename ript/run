@@ -5,7 +5,7 @@
 
 ./build
 c
-cd $ykes
+cd $ENGINE
 
 ./ykes
 

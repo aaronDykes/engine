@@ -1,11 +1,14 @@
+#include "car.hpp"
 #include "display_manager.hpp"
 #include "event_step.hpp"
 #include "game_manager.hpp"
+#include "input_manager.hpp"
 // #include <SFML/Graphics.hpp>
 
 static ykes::WorldManager   &wm  = ykes::WorldManager::get_instance();
 static ykes::LogManager     &log = ykes::LogManager::get_instance();
 static ykes::DisplayManager &DM  = ykes::DisplayManager::get_instance();
+static ykes::InputManager   &IM  = ykes::InputManager::get_instance();
 
 ykes::GameManager::GameManager()
 {
@@ -31,6 +34,7 @@ void ykes::GameManager::shut(void)
 {
 	wm.shut();
 	DM.shut();
+	IM.shut();
 	log.shut();
 	this->end_game(true);
 }
@@ -49,24 +53,29 @@ int ykes::GameManager::run()
 
 		log.init_flush(true);
 
+		Object *obj = new Object("ykes::Car");
+		Car    *car = dynamic_cast<Car *>(obj);
+
+		// wm.markForDelete(car);
+		broadcastEvents();
+
 		wm.update();
 		wm.draw();
 
-		sf::Event event;
+		int res = 0;
 		while (DM.getWindow()->isOpen())
 		{
-			while (DM.getWindow()->pollEvent(event))
+
+			if ((res = IM.get_input()) == -1)
 			{
-				if (event.type == sf::Event::Closed)
-				{
-					DM.shut();
-					return 0;
-				};
+				shut();
+				return 0;
 			}
+			if (res == 1)
+				return res;
 
 			DM.drawString(
-			    Vector(10, 10), "This is a string", JUSTIFIED_CENTER,
-			    sf::Color::Red
+			    Vector(10, 10), "*****", JUSTIFIED_CENTER, sf::Color::Red
 			);
 			DM.swap_buffers();
 		}
@@ -92,6 +101,7 @@ int ykes::GameManager::get_frame_time() const
 
 ykes::Object::Object()
 {
+	altitude = HALF_MAX_ALTITUDE;
 	wm.insertObject(this);
 }
 
@@ -106,20 +116,105 @@ ykes::Object::~Object()
 	wm.removeObject(this);
 }
 
+#ifdef CAR_TST_DBG
 void ykes::GameManager::broadcastEvents(void)
 {
 	EventStep e;
-	Manager::onEvent(&e);
+	e.setType("collision");
+	onEvent(&e);
 }
+#endif
 
 int ykes::Manager::onEvent(Event *event) const
 {
 	size_t i;
 
+	int  res  = 0;
 	List list = wm.getObjectList();
 
 	for (i = 0; i < list.count; i++)
-		(*(list.list + i))->eventHandler(event);
+		if ((res = (*(list.list + i))->eventHandler(event)) == 1)
+			wm.markForDelete(*(list.list + i));
 
 	return i;
+}
+
+int ykes::InputManager::start(void)
+{
+	sf::RenderWindow *win = NULL;
+	win                   = DM.getWindow();
+
+	if (!win)
+		return 1;
+
+	win->setKeyRepeatEnabled(false);
+
+	return Manager::start();
+}
+
+void ykes::InputManager::shut(void)
+{
+	sf::RenderWindow *win = NULL;
+	win                   = DM.getWindow();
+
+	if (!win)
+		return;
+
+	win->setKeyRepeatEnabled(true);
+	Manager::shut();
+}
+
+int ykes::InputManager::get_input(void) const
+{
+	sf::RenderWindow *win = NULL;
+	win                   = DM.getWindow();
+
+	sf::Event event;
+
+	if (!win)
+		return 1;
+
+	while (win->pollEvent(event))
+	{
+
+		if (event.type == sf::Event::Closed ||
+		    (event.type == sf::Event::KeyPressed &&
+		     (event.key.code == sf::Keyboard::Q)))
+		{
+			return -1;
+		}
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::J))
+			;
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::K))
+			;
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::H))
+			;
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::L))
+			;
+
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
+			;
+
+		switch (event.type)
+		{
+
+		case sf::Event::KeyReleased:
+		case sf::Event::MouseMoved:
+			switch (event.mouseButton.button)
+			{
+			case sf::Mouse::Button::Left:
+			case sf::Mouse::Button::Right:
+			case sf::Mouse::Button::Middle:
+			default:
+			}
+
+		case sf::Event::MouseButtonPressed:
+
+		default:
+		}
+	}
+	return 0;
 }

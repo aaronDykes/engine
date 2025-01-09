@@ -26,6 +26,7 @@ int ykes::DisplayManager::start()
 
 	set_type("ykes::DisplayManager");
 
+	background        = WINDOW_BACKGROUND_COLOR;
 	horizontal_pixels = WINDOW_HORIZONTAL_PIXELS;
 	vertical_pixels   = WINDOW_VERTICAL_PIXELS;
 
@@ -42,6 +43,7 @@ int ykes::DisplayManager::start()
 
 	window->setVerticalSyncEnabled(true);
 	window->setMouseCursorVisible(false);
+	window->setKeyRepeatEnabled(false);
 
 	return 0;
 }
@@ -63,7 +65,7 @@ int ykes::DisplayManager::drawCh(Vector world_pos, char ch, sf::Color color)
 	static sf::RectangleShape rect =
 	    sf::RectangleShape(sf::Vector2f(char_width(), char_height()));
 
-	rect.setFillColor(WINDOW_BACKGROUND_COLOR);
+	rect.setFillColor(background);
 	rect.setPosition(
 	    pix_pos.getX() - char_width() / 10, pix_pos.getY() + char_height() / 5
 	);
@@ -170,12 +172,13 @@ int ykes::DisplayManager::drawString(
 	switch (just)
 	{
 	case JUSTIFIED_LEFT:
+		start.setX(pos.getX() - (str.size() * 2));
 		break;
 	case JUSTIFIED_RIGHT:
-		start.setX(pos.getX() - str.size());
+		start.setX(pos.getX() - (str.size() / 2));
 		break;
 	case JUSTIFIED_CENTER:
-		start.setX(pos.getX() - str.size() / 2);
+		start.setX(pos.getX() - str.size());
 		break;
 	}
 	char *tmp   = (char *)str.c_str();

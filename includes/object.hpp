@@ -27,7 +27,7 @@ namespace ykes
 	    public:
 		Object();
 		Object(std::string type);
-		~Object();
+		virtual ~Object();
 
 		int  getAltitude(void) const;
 		void setAltitude(int alt);

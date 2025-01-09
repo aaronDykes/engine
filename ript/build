@@ -3,7 +3,7 @@
 . ~/.zshrc
 
 
-ykes="../"
+ykes=$ENGINE
 
 cd $ykes 
 mace

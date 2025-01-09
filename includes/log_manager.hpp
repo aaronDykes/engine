@@ -22,7 +22,7 @@ namespace ykes
 		static inline LogManager &get_instance(void);
 
 		int  start();
-		int  shut();
+		void shut();
 		void init_flush(bool do_flush = true);
 		void message(const char *fmt, ...);
 	};

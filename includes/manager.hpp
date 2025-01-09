@@ -25,7 +25,7 @@ namespace ykes
 
 		int          onEvent(Event *event) const;
 		virtual int  start();
-		virtual void end();
+		virtual void shut();
 	};
 
 } // namespace ykes

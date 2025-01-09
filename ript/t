@@ -5,6 +5,6 @@
 
 ./build
 c
-cd ../
-./ykes ./test/file/nested_import.yk
+cd $ENGINE
+./ykes ./$ENGINE/test/$1
 

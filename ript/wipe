@@ -3,9 +3,8 @@
 source ~/.zshrc
 
 
-ykes="../"
 
-cd $ykes
+cd $ENGINE
 mace
 c
 

@@ -14,7 +14,7 @@
 #define WINDOW_STYLE            sf::Style::TitleBar
 #define WINDOW_BACKGROUND_COLOR sf::Color::Black
 #define WINDOW_TITLE            "ykes"
-#define FONT_PATH               "/usr/share/fonts/opentype/cantarell/Cantarell-Regular.otf"
+#define FONT_PATH               "/usr/share/fonts/truetype/firacode/FiraCode-Regular.ttf"
 
 typedef enum
 {
